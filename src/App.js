@@ -1,17 +1,17 @@
 import "./App.css";
-import Journal from "./components/Journal.js";
+import JournalList from "./components/JournalList.js";
+
+const guestName = "LP";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Journal />
-        <Journal />
-        <Journal />
-        <Journal />
-        <Journal />
-        <button>Add Bike</button>
+    <div>
+      <header>
+        <JournalList />
+        <button>Add Journal</button>
       </header>
+      <p>Welcome {guestName}!</p>
+      <p>We're glad you're here.</p>
     </div>
   );
 }
