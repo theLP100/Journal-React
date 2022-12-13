@@ -16,7 +16,9 @@ function JournalList() {
     },
   ];
 
-  return journalsList.map((journal) => <Journal />);
+  return journalsList.map((journal) => (
+    <Journal id={id} design={design} sub_design={sub_design} dye={dye} />
+  ));
 }
 
 export default JournalList;
