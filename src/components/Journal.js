@@ -1,20 +1,20 @@
 import "./Journal.css";
 
 //this sets up Journal as a component.
-function Journal() {
-  const myJournal = {
-    id: 1,
-    design: "Lord of the Rings",
-    sub_design: "Rohan",
-    dye: "Bison Brown",
-  };
+function Journal(props) {
+  const journalDesign = props.design;
+  const journalId = props.id;
+  const journalSubDesign = props.sub_design;
+  const journalDye = props.dye;
+
   return (
     //specify anything you want to be rendered to the user
     <div>
-      <h2 className="journal__design">{myJournal.design}</h2>
+      <h2 className="journal__design">{journalDesign}</h2>
       <ul>
-        <li>{myJournal.sub_design}</li>
-        <li>{myJournal.dye}</li>
+        <li>{journalId}</li>
+        <li>{journalSubDesign}</li>
+        <li>{journalDye}</li>
       </ul>
     </div>
   );

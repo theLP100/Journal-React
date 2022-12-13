@@ -17,7 +17,14 @@ function JournalList() {
   ];
 
   return journalsList.map((journal) => (
-    <Journal id={id} design={design} sub_design={sub_design} dye={dye} />
+    <li key={journal.id}>
+      <Journal
+        id={journal.id}
+        design={journal.design}
+        sub_design={journal.sub_design}
+        dye={journal.dye}
+      />
+    </li>
   ));
 }
 
