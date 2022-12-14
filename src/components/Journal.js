@@ -9,7 +9,26 @@ function Journal(props) {
   const journalId = props.id;
   const journalSubDesign = props.sub_design;
   const journalDye = props.dye;
-  //const [journalPrice, setJournalPrice] = useState(props.price); //need to fix this error
+  const [journalPrice, setJournalPrice] = useState(props.price); //need to fix this error
+  function getColorFromDye(dye) {
+    if (dye === "Bison Brown") {
+      return "brown";
+    }
+    if (dye === "red") {
+      return "red";
+    }
+  }
+  // the following needs debugging.
+  //this currently isn't working. try to get it working and make it work.
+  const increaseJournalPrice = () => {
+    let newjournalPrice = journalPrice + 1;
+    setJournalPrice(newjournalPrice); //you can do this on one line if you want:
+    //setJournalPrice(newjournalPrice + 1)
+  };
+
+  const decreaseJournalPrice = () => {
+    setJournalPrice(journalPrice + 1);
+  };
 
   return (
     //specify anything you want to be rendered to the user
@@ -37,26 +56,6 @@ function Journal(props) {
 //     setBikePrice
 //   }
 // }
-
-function getColorFromDye(dye) {
-  if (dye === "Bison Brown") {
-    return "brown";
-  }
-  if (dye === "red") {
-    return "red";
-  }
-}
-// the following needs debugging.
-//this currently isn't working. try to get it working and make it work.
-const increaseJournalPrice = () => {
-  let newjournalPrice = journalPrice + 1;
-  setJournalPrice(newjournalPrice); //you can do this on one line if you want:
-  //setJournalPrice(newjournalPrice + 1)
-};
-
-const decreaseJournalPrice = () => {
-  setJournalPrice(journalPrice + 1);
-};
 
 Journal.propTypes = {
   id: PropTypes.number.isRequired,
