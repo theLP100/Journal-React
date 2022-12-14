@@ -1,8 +1,9 @@
+import PropTypes from "prop-types";
 import Journal from "./Journal";
 
 function JournalList({ journalsList }) {
   const journalComponents = [];
-  for (const journal of journalList) {
+  for (const journal of journalsList) {
     journalComponents.push(
       <li key={journal.id}>
         <Journal
@@ -15,7 +16,16 @@ function JournalList({ journalsList }) {
     );
   }
 
-  return { <div>journalComponents</div> };
+  return <div>{journalComponents}</div>;
 }
 
+JournalList.propTypes = {
+  journalsList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      design: PropTypes.string.isRequired,
+      //put dye and sub-design here if they're not required.
+    })
+  ),
+};
 export default JournalList;
