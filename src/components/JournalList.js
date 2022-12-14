@@ -1,9 +1,11 @@
 import PropTypes from "prop-types";
 import Journal from "./Journal";
 
-function JournalList({ journalsList }) {
+function JournalList(props) {
+  const journalsList = props.journalsList;
   const journalComponents = [];
   for (const journal of journalsList) {
+    console.log("im in the for loop of JournalList function" + journal);
     journalComponents.push(
       <li key={journal.id}>
         <Journal

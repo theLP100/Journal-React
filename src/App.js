@@ -22,10 +22,8 @@ function App() {
 
   return (
     <div>
-      <header>
-        <JournalList journalsList={JournalList} />
-        <button>Add Journal</button>
-      </header>
+      <JournalList journalsList={journalsList} />
+      <button>Add Journal</button>
       <p>Welcome {guestName}!</p>
       <p>We're glad you're here.</p>
     </div>
