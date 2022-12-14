@@ -1,6 +1,8 @@
+import PropTypes from "prop-types";
 import "./Journal.css";
 
 //this sets up Journal as a component.
+//you can change props to be a list of attributes.
 function Journal(props) {
   const journalDesign = props.design;
   const journalId = props.id;
@@ -19,5 +21,9 @@ function Journal(props) {
     </div>
   );
 }
+
+Journal.propTypes = {
+  id: PropTypes.number.isRequired,
+};
 
 export default Journal;
