@@ -8,15 +8,17 @@ function App() {
   const journalsList = [
     {
       id: 1,
-      design: "Testing",
+      design: "Lord of the Rings",
       sub_design: "Rohan",
       dye: "Bison Brown",
+      price: 60,
     },
     {
       id: 2,
       design: "Lord of the Rings",
       sub_design: "Gondor",
       dye: "Bison Brown",
+      price: 60,
     },
   ];
 

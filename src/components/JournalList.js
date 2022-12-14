@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import Journal from "./Journal";
+//below i don't know if /ul is right to hvae under push, I think it's causing problems.
 
 function JournalList(props) {
   const journalsList = props.journalsList;
@@ -7,14 +8,15 @@ function JournalList(props) {
   for (const journal of journalsList) {
     console.log("im in the for loop of JournalList function" + journal);
     journalComponents.push(
-      <li key={journal.id}>
+      <ul key={journal.id}>
         <Journal
           id={journal.id}
           design={journal.design}
           sub_design={journal.sub_design}
           dye={journal.dye}
+          price={journal.price}
         />
-      </li>
+      </ul>
     );
   }
 
