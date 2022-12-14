@@ -20,4 +20,18 @@ function Journal(props) {
   );
 }
 
+//add journal button code: I don't know if this is the right place for the following code
+const Post = () => {
+  const printMessage = () => {
+    console.log("Hello! We're in printMessage!");
+  };
+
+  return (
+    <section>
+      <button onClick={printMessage}>Add Journal</button>
+    </section>
+  );
+};
+//end add journal button code.
+
 export default Journal;
