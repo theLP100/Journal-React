@@ -27,7 +27,9 @@ JournalList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       design: PropTypes.string.isRequired,
-      //put dye and sub-design here if they're not required.
+      sub_design: PropTypes.string,
+      dye: PropTypes.string.isRequired,
+      price: PropTypes.number,
     })
   ),
 };
