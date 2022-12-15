@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 import "./Journal.css";
-import { useState } from "react";
 
 //this sets up Journal as a component.
 function Journal(props) {
@@ -10,7 +9,10 @@ function Journal(props) {
   const journalId = props.id;
   const journalSubDesign = props.sub_design;
   const journalDye = props.dye;
-  const [journalPrice, setJournalPrice] = useState(props.price); //need to fix this error
+  const journalPrice = props.price;
+  const updatePrice = props.updatePrice;
+  const deleteJournal = props.deleteJournal;
+
   function getColorFromDye(dye) {
     //I bet you could refactor this to reference values in a dictionary to do for all journals. (key: "bison brown", value: "brown")
     if (dye === "Bison Brown") {
@@ -22,20 +24,22 @@ function Journal(props) {
   }
 
   //potential refactoring: for increaseJournalPrice and decreaseJournalPrice
-  // function changeBikePrice(inc){
-  //   if(inc){
-  //     setBikePrice
-  //   }
-  // }
-  const increaseJournalPrice = () => {
-    let newjournalPrice = journalPrice + 1;
-    setJournalPrice(newjournalPrice); //you can do this on one line if you want:
-    //setJournalPrice(newjournalPrice + 1)
-  };
+  function changeJournalPrice(inc) {
+    if (inc) {
+      updatePrice(journalId, journalPrice + 1);
+    } else {
+      updatePrice(journalId, journalPrice - 1);
+    }
+  }
+  // const increaseJournalPrice = () => {
+  //   let newjournalPrice = journalPrice + 1;
+  //   updatePrice(newjournalPrice); //you can do this on one line if you want:
+  //   //setJournalPrice(newjournalPrice + 1)
+  // };
 
-  const decreaseJournalPrice = () => {
-    setJournalPrice(journalPrice - 1);
-  };
+  // const decreaseJournalPrice = () => {
+  //   updatePrice(journalPrice - 1);
+  // };
 
   return (
     //specify anything you want to be rendered to the user
@@ -51,14 +55,19 @@ function Journal(props) {
         </li>
         <li>Price: {journalPrice}</li>
       </ul>
-      <button onClick={increaseJournalPrice}>Increase Price</button>
-      <button onClick={decreaseJournalPrice}>Decrease Price</button>
+      <button onClick={changeJournalPrice(true)}>Increase Price</button>
+      <button onClick={changeJournalPrice(false)}>Decrease Price</button>
+      <button onClick={() => deleteJournal(journalId)}>Delete</button>
     </div>
   );
 }
+//arrow function is very important above.
 
 Journal.propTypes = {
   id: PropTypes.number.isRequired,
+  //add all other types here.
+  updatePrice: PropTypes.func.isRequired,
+  deleteJournal: PropTypes.func.isRequired,
 };
 
 export default Journal;

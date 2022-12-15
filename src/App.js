@@ -3,7 +3,6 @@ import "./App.css";
 import JournalList from "./components/JournalList.js";
 // import Navbar from "./components/Navbar.js";
 import { useState } from "react";
-import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers";
 
 const guestName = "LP";
 
@@ -59,12 +58,30 @@ function App() {
         newJournalsList.push(newJournal);
       }
     }
+    setJournalsList(newJournalsList); //this is the way to update the state.  this is very important.
+    //we can't treat them like normal variables.
+  };
+
+  const deleteJournal = (journalId) => {
+    console.log("Delete Journal called");
+    const newJournalsList = [];
+    for (const journal of newJournalsList) {
+      //this could be done with something called filter.
+      if (journal.id !== journalId) {
+        newJournalsList.push(journal);
+      }
+    }
+    setJournalsList(newJournalsList);
   };
 
   return (
     <div>
       {/* <Navbar /> */}
-      <JournalList journalsList={journalsList} />
+      <JournalList
+        journalsList={journalsList}
+        updatePrice={updatePrice}
+        deleteJournal={deleteJournal}
+      />
       <button>Add Journal</button>
       <p>Welcome {guestName}!</p>
       <p>We're glad you're here.</p>

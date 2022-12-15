@@ -5,6 +5,9 @@ import Journal from "./Journal";
 function JournalList(props) {
   const journalsList = props.journalsList;
   const journalComponents = [];
+  const updatePrice = props.updatePrice; //we pass this down with props.
+  const deleteJournal = props.deleteJournal;
+
   //the following can be done in a map function if you prefer (to a for loop)
   for (const journal of journalsList) {
     journalComponents.push(
@@ -15,6 +18,8 @@ function JournalList(props) {
         sub_design={journal.sub_design}
         dye={journal.dye}
         price={journal.price}
+        updatePrice={updatePrice}
+        deleteJournal={deleteJournal} //something is wrong here.
       />
     );
   }
@@ -22,6 +27,7 @@ function JournalList(props) {
   return <div>{journalComponents}</div>;
 }
 
+//it's helpful to change this part first when you're updating stuff.
 JournalList.propTypes = {
   journalsList: PropTypes.arrayOf(
     PropTypes.shape({
@@ -32,5 +38,7 @@ JournalList.propTypes = {
       price: PropTypes.number,
     })
   ),
+  updatePrice: PropTypes.func.isRequired, //we're passing this from app to journallist, and then we'll pass it down to journal.
+  deleteJournal: PropTypes.func.isRequired,
 };
 export default JournalList;
