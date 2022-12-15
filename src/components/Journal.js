@@ -27,7 +27,7 @@ function Journal(props) {
   };
 
   const decreaseJournalPrice = () => {
-    setJournalPrice(journalPrice + 1);
+    setJournalPrice(journalPrice - 1);
   };
 
   return (
