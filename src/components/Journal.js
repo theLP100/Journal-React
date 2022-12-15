@@ -5,12 +5,14 @@ import { useState } from "react";
 
 //this sets up Journal as a component.
 function Journal(props) {
+  //note: you don't need to rename these variables if you don't want to.
   const journalDesign = props.design;
   const journalId = props.id;
   const journalSubDesign = props.sub_design;
   const journalDye = props.dye;
   const [journalPrice, setJournalPrice] = useState(props.price); //need to fix this error
   function getColorFromDye(dye) {
+    //I bet you could refactor this to reference values in a dictionary to do for all journals. (key: "bison brown", value: "brown")
     if (dye === "Bison Brown") {
       return "brown";
     }
