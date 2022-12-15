@@ -1,6 +1,7 @@
 import "./App.css";
 //import Navbar from './components/Navbar.js
 import JournalList from "./components/JournalList.js";
+// import Navbar from "./components/Navbar.js";
 
 const guestName = "LP";
 
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <div>
+      {/* <Navbar /> */}
       <JournalList journalsList={journalsList} />
       <button>Add Journal</button>
       <p>Welcome {guestName}!</p>

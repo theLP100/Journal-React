@@ -5,18 +5,17 @@ import Journal from "./Journal";
 function JournalList(props) {
   const journalsList = props.journalsList;
   const journalComponents = [];
+  //the following can be done in a map function if you prefer (to a for loop)
   for (const journal of journalsList) {
-    console.log("im in the for loop of JournalList function" + journal);
     journalComponents.push(
-      <ul key={journal.id}>
-        <Journal
-          id={journal.id}
-          design={journal.design}
-          sub_design={journal.sub_design}
-          dye={journal.dye}
-          price={journal.price}
-        />
-      </ul>
+      <Journal
+        key={journal.id}
+        id={journal.id}
+        design={journal.design}
+        sub_design={journal.sub_design}
+        dye={journal.dye}
+        price={journal.price}
+      />
     );
   }
 

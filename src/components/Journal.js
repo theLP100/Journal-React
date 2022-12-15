@@ -18,8 +18,13 @@ function Journal(props) {
       return "red";
     }
   }
-  // the following needs debugging.
-  //this currently isn't working. try to get it working and make it work.
+
+  //potential refactoring: for increaseJournalPrice and decreaseJournalPrice
+  // function changeBikePrice(inc){
+  //   if(inc){
+  //     setBikePrice
+  //   }
+  // }
   const increaseJournalPrice = () => {
     let newjournalPrice = journalPrice + 1;
     setJournalPrice(newjournalPrice); //you can do this on one line if you want:
@@ -49,13 +54,6 @@ function Journal(props) {
     </div>
   );
 }
-
-//potential refactoring:
-// function changeBikePrice(inc){
-//   if(inc){
-//     setBikePrice
-//   }
-// }
 
 Journal.propTypes = {
   id: PropTypes.number.isRequired,
