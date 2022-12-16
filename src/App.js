@@ -97,14 +97,22 @@ function App() {
 
   const deleteJournal = (journalId) => {
     console.log("Delete Journal called");
-    const newJournalsList = [];
-    for (const journal of newJournalsList) {
-      //this could be done with something called filter.
-      if (journal.id !== journalId) {
-        newJournalsList.push(journal);
-      }
-    }
-    setJournalsList(newJournalsList);
+
+    axios
+      .delete(`${URL}/${journalId}`)
+      .then(() => {
+        const newJournalsList = [];
+        for (const journal of newJournalsList) {
+          //this could be done with something called filter.
+          if (journal.id !== journalId) {
+            newJournalsList.push(journal);
+          }
+        }
+        setJournalsList(newJournalsList);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
