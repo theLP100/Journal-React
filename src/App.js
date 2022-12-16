@@ -7,58 +7,71 @@ import axios from "axios";
 
 const guestName = "LP";
 
-const INITIAL_JOURNALS = [
-  {
-    id: 1,
-    design: "Lord of the Rings",
-    sub_design: "Rohan",
-    dye: "Bison Brown",
-    price: 60,
-  },
-  {
-    id: 2,
-    design: "Lord of the Rings",
-    sub_design: "Gondor",
-    dye: "Bison Brown",
-    price: 60,
-  },
-  {
-    id: 3,
-    design: "Astrology",
-    sub_design: "Libra",
-    dye: "Canyon Tan",
-    price: 60,
-  },
-  {
-    id: 4,
-    design: "Fantasy Bird",
-    sub_design: "",
-    dye: "Red Gradient",
-    price: 70,
-  },
-];
+// const INITIAL_JOURNALS = [
+//   {
+//     id: 1,
+//     design: "Lord of the Rings",
+//     sub_design: "Rohan",
+//     dye: "Bison Brown",
+//     price: 60,
+//   },
+//   {
+//     id: 2,
+//     design: "Lord of the Rings",
+//     sub_design: "Gondor",
+//     dye: "Bison Brown",
+//     price: 60,
+//   },
+//   {
+//     id: 3,
+//     design: "Astrology",
+//     sub_design: "Libra",
+//     dye: "Canyon Tan",
+//     price: 60,
+//   },
+//   {
+//     id: 4,
+//     design: "Fantasy Bird",
+//     sub_design: "",
+//     dye: "Red Gradient",
+//     price: 70,
+//   },
+// ];
 
 function App() {
+  const [journalsList, setJournalsList] = useState([]);
   const URL = "http://localhost:5000/journal";
   useEffect(() => {
     axios
       .get(URL)
       .then((res) => {
-        console.log(res);
+        //console.log(res);
+        const journalsAPIResCopy = res.data.map((journal) => {
+          return {
+            id: journal.id,
+            design: journal.design,
+            "sub-design": journal.sub_design,
+            //price isn't in the database yet.  change that.
+            dye: journal.dye,
+          };
+        });
+        setJournalsList(journalsAPIResCopy);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  const initialCopy = INITIAL_JOURNALS.map((journal) => {
-    return { ...journal }; //THIS IS VERY IMPORTANT.  DON'T FORGET FOR CHAT LOG.
-  });
+  //the following isn't needed now that we have the journalAPIResCopy
+  // const initialCopy = INITIAL_JOURNALS.map((journal) => {
+  //   return { ...journal }; //THIS IS VERY IMPORTANT.  DON'T FORGET FOR CHAT LOG.
+  // });
 
-  const [journalsList, setJournalsList] = useState(initialCopy);
+  // const [journalsList, setJournalsList] = useState(journalsAPIResCopy);
 
   const updatePrice = (journalId, updatedPrice) => {
     //when we update our data, we need to make a new array.
+    console.log("updatePrice is being called for id", journalId); //it's calling the wrong id.  look into how it's getting journal id.
     const newJournalsList = [];
     for (const journal of journalsList) {
       if (journal.id !== journalId) {
