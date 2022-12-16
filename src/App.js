@@ -2,7 +2,8 @@ import "./App.css";
 //import Navbar from './components/Navbar.js
 import JournalList from "./components/JournalList.js";
 // import Navbar from "./components/Navbar.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const guestName = "LP";
 
@@ -38,6 +39,18 @@ const INITIAL_JOURNALS = [
 ];
 
 function App() {
+  const URL = "http://localhost:5000/journal";
+  useEffect(() => {
+    axios
+      .get(URL)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const initialCopy = INITIAL_JOURNALS.map((journal) => {
     return { ...journal }; //THIS IS VERY IMPORTANT.  DON'T FORGET FOR CHAT LOG.
   });

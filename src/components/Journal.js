@@ -24,22 +24,23 @@ function Journal(props) {
   }
 
   //potential refactoring: for increaseJournalPrice and decreaseJournalPrice
-  function changeJournalPrice(inc) {
-    if (inc) {
-      updatePrice(journalId, journalPrice + 1);
-    } else {
-      updatePrice(journalId, journalPrice - 1);
-    }
-  }
-  // const increaseJournalPrice = () => {
-  //   let newjournalPrice = journalPrice + 1;
-  //   updatePrice(newjournalPrice); //you can do this on one line if you want:
-  //   //setJournalPrice(newjournalPrice + 1)
-  // };
+  //the following led to bugs of infinitely decreasing price for last journal, not sure why.
+  // function changeJournalPrice(inc) {
+  //   if (inc) {
+  //     updatePrice(journalId, journalPrice + 1);
+  //   } else {
+  //     updatePrice(journalId, journalPrice - 1);
+  //   }
+  // }
+  const increaseJournalPrice = () => {
+    let newjournalPrice = journalPrice + 1;
+    updatePrice(newjournalPrice); //you can do this on one line if you want:
+    //setJournalPrice(newjournalPrice + 1)
+  };
 
-  // const decreaseJournalPrice = () => {
-  //   updatePrice(journalPrice - 1);
-  // };
+  const decreaseJournalPrice = () => {
+    updatePrice(journalPrice - 1);
+  };
 
   return (
     //specify anything you want to be rendered to the user
@@ -55,8 +56,8 @@ function Journal(props) {
         </li>
         <li>Price: {journalPrice}</li>
       </ul>
-      <button onClick={changeJournalPrice(true)}>Increase Price</button>
-      <button onClick={changeJournalPrice(false)}>Decrease Price</button>
+      <button onClick={increaseJournalPrice}>Increase Price</button>
+      <button onClick={decreaseJournalPrice}>Decrease Price</button>
       <button onClick={() => deleteJournal(journalId)}>Delete</button>
     </div>
   );

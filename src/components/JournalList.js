@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import Journal from "./Journal";
+
 //below i don't know if /ul is right to hvae under push, I think it's causing problems.
 
 function JournalList(props) {
