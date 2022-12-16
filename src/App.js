@@ -73,19 +73,26 @@ function App() {
     //when we update our data, we need to make a new array.
     console.log("updatePrice is being called for id", journalId); //it's calling the wrong id.  look into how it's getting journal id.
     const newJournalsList = [];
-    for (const journal of journalsList) {
-      if (journal.id !== journalId) {
-        newJournalsList.push(journal);
-      } else {
-        const newJournal = {
-          ...journal,
-          price: updatedPrice,
-        };
-        newJournalsList.push(newJournal);
-      }
-    }
-    setJournalsList(newJournalsList); //this is the way to update the state.  this is very important.
-    //we can't treat them like normal variables.
+    axios
+      .patch(`${URL}/${journalId}/${updatedPrice}`)
+      .then(() => {
+        for (const journal of journalsList) {
+          if (journal.id !== journalId) {
+            newJournalsList.push(journal);
+          } else {
+            const newJournal = {
+              ...journal,
+              price: updatedPrice,
+            };
+            newJournalsList.push(newJournal);
+          }
+        }
+        setJournalsList(newJournalsList); //this is the way to update the state.  this is very important.
+        //we can't treat them like normal variables.
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const deleteJournal = (journalId) => {
